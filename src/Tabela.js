@@ -11,27 +11,21 @@ const TableHead = () => {
     )
 }
 
-const TableBody = () => {
+const TableBody = props => {
+    const linhas = props.autores.map((linha, index) => {
+        return (
+            <tr key={index} >
+                <td>{linha.nome}</td>
+                <td>{linha.livro}</td>
+                <td>{linha.preco}</td>
+                <td><button onClick={ () => props.handleDelete(index) }>Remover</button></td>
+            </tr>
+        )
+    })
+
     return (
         <tbody>
-            <tr>
-                <td>Paulo</td>
-                <td>React</td>
-                <td>100</td>
-                <td><button>Remover</button></td>
-            </tr>
-            <tr>
-                <td>Nico</td>
-                <td>React</td>
-                <td>100</td>
-                <td><button>Remover</button></td>
-            </tr>
-            <tr>
-                <td>João</td>
-                <td>React</td>
-                <td>100</td>
-                <td><button>Remover</button></td>
-            </tr>
+            {linhas}
         </tbody>
     )
 }
@@ -39,11 +33,13 @@ const TableBody = () => {
 class Tabela extends Component {
 
     render() {
+        const { autores, handleDelete } = this.props
+
         return (
             <table>
 
                 <TableHead />
-                <TableBody />
+                <TableBody autores={ autores } handleDelete={handleDelete} />
 
             </table>
         )
