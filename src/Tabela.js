@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 
+import 'materialize-css/dist/css/materialize.min.css'
+
 const TableHead = () => {
     return (
         <thead>
-            <th>Autor</th>
-            <th>Livro</th>
-            <th>Preço</th>
-            <th>Remover</th>
+            <tr>
+                <th>Autor</th>
+                <th>Livro</th>
+                <th>Preço</th>
+                <th>Remover</th>
+            </tr>
         </thead>
     )
 }
@@ -18,7 +22,11 @@ const TableBody = props => {
                 <td>{linha.nome}</td>
                 <td>{linha.livro}</td>
                 <td>{linha.preco}</td>
-                <td><button onClick={ () => props.handleDelete(index) }>Remover</button></td>
+                <td>
+                    <button className="waves-effect waves-light indigo lighten-2 btn" onClick={() => props.handleDelete(index)}>
+                        Remover
+                    </button>
+                </td>
             </tr>
         )
     })
@@ -36,11 +44,9 @@ class Tabela extends Component {
         const { autores, handleDelete } = this.props
 
         return (
-            <table>
-
+            <table className="centered highlight">
                 <TableHead />
-                <TableBody autores={ autores } handleDelete={handleDelete} />
-
+                <TableBody autores={autores} handleDelete={handleDelete} />
             </table>
         )
     }
