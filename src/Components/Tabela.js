@@ -21,7 +21,10 @@ const TableBody = props => {
             <tr key={index} >
                 <td>{linha.nome}</td>
                 <td>{linha.livro}</td>
-                <td>{linha.preco}</td>
+                <td>{Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                }).format(linha.preco)}</td>
                 <td>
                     <button className="waves-effect waves-light indigo lighten-2 btn" onClick={() => props.handleDelete(index)}>
                         Remover

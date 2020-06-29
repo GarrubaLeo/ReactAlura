@@ -2,9 +2,10 @@ import React, { Component, Fragment } from 'react';
 
 import 'materialize-css/dist/css/materialize.min.css'
 
-import Tabela from './Tabela'
-import Form from './Form'
-import Header from './Header'
+import Tabela from './Components/Tabela'
+import Form from './Components/Form'
+import Header from './Components/Header'
+import PopUp from './Components/PopUp'
 
 class App extends Component {
   state = {
@@ -46,11 +47,14 @@ class App extends Component {
           return posAtual !== index;
         })
       }
-    )
+    );
+
+    PopUp.exibeMensagem('success', 'Autor removido');
   }
 
   handleSubmit = autor => {
-    this.setState({ autores: [...this.state.autores, autor] })
+    this.setState({ autores: [...this.state.autores, autor] });
+    PopUp.exibeMensagem('success', 'Autor cadastrado');
   }
 
   render() {
